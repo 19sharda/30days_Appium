@@ -1,11 +1,13 @@
 package org.example;
 
+import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.net.URL;
+import java.util.List;
 
 public class AppiumSetupTest {
     public static void main(String[] args) throws Exception {
@@ -24,10 +26,15 @@ public class AppiumSetupTest {
         // Create an instance of AndroidDriver to interact with the app
         AndroidDriver driver = new AndroidDriver(appiumServerUrl, capabilities);
 
-        WebElement addPlantBtn = driver.findElement(By.xpath("//android.widget.TextView[@text='Add plant']/parent::android.view.View"));
-        addPlantBtn.click();
-        WebElement plantListTab = driver.findElement(By.xpath("//android.widget.TextView[@text='Plant list']"));
-        plantListTab.click();
+        WebElement myGarden = driver.findElement(By.xpath("//android.view.View[@content-desc='My garden']"));
+        myGarden.click();
+        List<WebElement> textViews = driver.findElements(By.className("android.widget.TextView"));
+        for (WebElement tv : textViews) {
+            System.out.println(tv.getText());
+        }
+
+        WebElement plantList = driver.findElement(AppiumBy.accessibilityId("Plant list"));
+        plantList.click();
 
 
         // Add your test code here (you can perform actions on your app using the 'driver')
