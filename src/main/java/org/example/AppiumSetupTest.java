@@ -15,7 +15,7 @@ public class AppiumSetupTest {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("platformName", "Android");
         capabilities.setCapability("deviceName", "emulator-5554");
-        capabilities.setCapability("app", "C:\\Users\\sp199\\IdeaProjects\\30days_Appium\\sunflower\\app\\build\\outputs\\apk\\debug\\app-debug.apk");
+        capabilities.setCapability("app", "yourPath\\app-debug.apk");
         capabilities.setCapability("automationName", "UiAutomator2"); // This line is important
         capabilities.setCapability("uiautomator2ServerInstallTimeout", 60000);
         capabilities.setCapability("adbExecTimeout", 120000);  // Timeout in milliseconds (e.g., 2 minutes)
