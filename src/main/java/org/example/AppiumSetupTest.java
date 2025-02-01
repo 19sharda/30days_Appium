@@ -15,7 +15,7 @@ public class AppiumSetupTest {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("platformName", "Android");
         capabilities.setCapability("deviceName", "emulator-5554");
-        capabilities.setCapability("app", "C:\\Your_Path\\app-debug.apk");
+        capabilities.setCapability("app", "C:\\Users\\sp199\\IdeaProjects\\30days_Appium\\sunflower\\app\\build\\outputs\\apk\\debug\\app-debug.apk");
         capabilities.setCapability("automationName", "UiAutomator2"); // This line is important
         capabilities.setCapability("uiautomator2ServerInstallTimeout", 60000);
         capabilities.setCapability("adbExecTimeout", 120000);  // Timeout in milliseconds (e.g., 2 minutes)
@@ -35,6 +35,18 @@ public class AppiumSetupTest {
 
         WebElement plantList = driver.findElement(AppiumBy.accessibilityId("Plant list"));
         plantList.click();
+
+        WebElement myPL = driver.findElement(By.xpath("//android.view.View[@content-desc='Plant list']"));
+        myPL.click();
+         List<WebElement> PlantL = driver.findElements(By.xpath("//android.widget.TextView"));
+        System.out.println("/n List of all plants");
+         for(WebElement p:PlantL){
+            System.out.println(p.getText());
+        }
+        Thread.sleep(5000);
+        WebElement myPlant = driver.findElement(By.xpath("(//android.view.View[@content-desc=\"Picture of plant\"])[1]"));
+        myPlant.click();
+
 
 
         // Add your test code here (you can perform actions on your app using the 'driver')
