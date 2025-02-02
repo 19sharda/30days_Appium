@@ -15,7 +15,7 @@ public class AppiumSetupTest {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("platformName", "Android");
         capabilities.setCapability("deviceName", "emulator-5554");
-        capabilities.setCapability("app", "yourPath\\app-debug.apk");
+        capabilities.setCapability("app", "Your_Path/app-debug.apk");
         capabilities.setCapability("automationName", "UiAutomator2");
         capabilities.setCapability("uiautomator2ServerInstallTimeout", 60000);
         capabilities.setCapability("adbExecTimeout", 120000);
@@ -54,20 +54,20 @@ public class AppiumSetupTest {
         Thread.sleep(5000);
 
         // 📷 Clicking on the first plant image using **advanced XPath**
-        WebElement myPlant = driver.findElement(By.xpath("(//android.view.View[@content-desc=\"Picture of plant\"])[1]"));
+        WebElement myPlant = driver.findElement(By.xpath("(//android.view.View[@content-desc='Picture of plant'])[1]"));
         myPlant.click();
-
+Thread.sleep(5000);
         // ✅ Example: Finding a sibling element
-        WebElement plantDescription = driver.findElement(By.xpath("//android.view.View[@content-desc='Picture of plant']/following-sibling::android.view.View"));
-        System.out.println("Plant Description: " + plantDescription.getText());
+        WebElement plantDescription = driver.findElement(By.xpath("//android.widget.TextView[@text='Watering needs']/following-sibling::android.widget.TextView"));
+        System.out.println("Watering needs: " + plantDescription.getText());
 
         // ✅ Example: Finding a parent element
-        WebElement plantContainer = driver.findElement(By.xpath("//android.view.View[@content-desc='Picture of plant']/parent::android.view.View"));
-        System.out.println("Plant Container Info: " + plantContainer.getAttribute("content-desc"));
+        WebElement plantContainer = driver.findElement(By.xpath("//android.widget.TextView[@resource-id=\"com.google.samples.apps.sunflower:id/plant_description\"]/parent::androidx.compose.ui.viewinterop.ViewFactoryHolder/android.widget.TextView"));
+        System.out.println("Plant Info: " + plantContainer.getText());
 
         // ✅ Example: Finding a specific element using contains()
-        WebElement specialPlant = driver.findElement(By.xpath("//android.widget.TextView[contains(@text, 'Rose')]"));
-        System.out.println("Special Plant Found: " + specialPlant.getText());
+        WebElement specialPlant = driver.findElement(By.xpath("//android.widget.TextView[contains(@text, 'Apple')]"));
+        System.out.println("Plant Found: " + specialPlant.getText());
 
         // 🎉 Success message
         System.out.println("App launched and tested successfully! 🌱");
