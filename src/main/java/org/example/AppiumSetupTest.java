@@ -11,51 +11,68 @@ import java.util.List;
 
 public class AppiumSetupTest {
     public static void main(String[] args) throws Exception {
-        // Set desired capabilities for the Android device and app
+        // 🚀 Setting up Appium - Because even robots need a GPS
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("platformName", "Android");
         capabilities.setCapability("deviceName", "emulator-5554");
         capabilities.setCapability("app", "yourPath\\app-debug.apk");
-        capabilities.setCapability("automationName", "UiAutomator2"); // This line is important
+        capabilities.setCapability("automationName", "UiAutomator2");
         capabilities.setCapability("uiautomator2ServerInstallTimeout", 60000);
-        capabilities.setCapability("adbExecTimeout", 120000);  // Timeout in milliseconds (e.g., 2 minutes)
+        capabilities.setCapability("adbExecTimeout", 120000);
 
-        // Specify the Appium server URL (should match the Appium server you started earlier)
+        // 🎯 Connect to Appium server
         URL appiumServerUrl = new URL("http://127.0.0.1:4723/");
-
-        // Create an instance of AndroidDriver to interact with the app
         AndroidDriver driver = new AndroidDriver(appiumServerUrl, capabilities);
 
+        // 🏡 Finding 'My Garden' using XPath
         WebElement myGarden = driver.findElement(By.xpath("//android.view.View[@content-desc='My garden']"));
         myGarden.click();
+
+        // 📜 Fetching all TextViews - Because we love plants, but we can't remember their names 🌿
         List<WebElement> textViews = driver.findElements(By.className("android.widget.TextView"));
+        System.out.println("\n--- List of Available Texts ---");
         for (WebElement tv : textViews) {
             System.out.println(tv.getText());
         }
 
+        // 🌱 Clicking on 'Plant List' - It's like visiting a botanical garden, virtually
         WebElement plantList = driver.findElement(AppiumBy.accessibilityId("Plant list"));
         plantList.click();
 
+        // 🌾 Confirming the 'Plant List' page is displayed
         WebElement myPL = driver.findElement(By.xpath("//android.view.View[@content-desc='Plant list']"));
         myPL.click();
-         List<WebElement> PlantL = driver.findElements(By.xpath("//android.widget.TextView"));
-        System.out.println("/n List of all plants");
-         for(WebElement p:PlantL){
-            System.out.println(p.getText());
+
+        // 📜 Listing all plant names using XPath
+        List<WebElement> plantNames = driver.findElements(By.xpath("//android.widget.TextView"));
+        System.out.println("\n--- List of Plants ---");
+        for (WebElement plant : plantNames) {
+            System.out.println(plant.getText());
         }
+
+        // 😴 Waiting for the user to admire the plant list
         Thread.sleep(5000);
+
+        // 📷 Clicking on the first plant image using **advanced XPath**
         WebElement myPlant = driver.findElement(By.xpath("(//android.view.View[@content-desc=\"Picture of plant\"])[1]"));
         myPlant.click();
 
+        // ✅ Example: Finding a sibling element
+        WebElement plantDescription = driver.findElement(By.xpath("//android.view.View[@content-desc='Picture of plant']/following-sibling::android.view.View"));
+        System.out.println("Plant Description: " + plantDescription.getText());
 
+        // ✅ Example: Finding a parent element
+        WebElement plantContainer = driver.findElement(By.xpath("//android.view.View[@content-desc='Picture of plant']/parent::android.view.View"));
+        System.out.println("Plant Container Info: " + plantContainer.getAttribute("content-desc"));
 
-        // Add your test code here (you can perform actions on your app using the 'driver')
-        System.out.println("App launched successfully!");
+        // ✅ Example: Finding a specific element using contains()
+        WebElement specialPlant = driver.findElement(By.xpath("//android.widget.TextView[contains(@text, 'Rose')]"));
+        System.out.println("Special Plant Found: " + specialPlant.getText());
 
-        // Quit the driver after the test
+        // 🎉 Success message
+        System.out.println("App launched and tested successfully! 🌱");
+
+        // 🛑 Closing the Appium driver
         driver.quit();
     }
 }
-
-
-
