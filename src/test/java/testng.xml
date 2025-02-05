@@ -1,0 +1,7 @@
+<suite name="Mobile Test Suite">
+    <test name="Login Tests">
+        <classes>
+            <class name="tests.pageTest1"/>
+        </classes>
+    </test>
+</suite>
