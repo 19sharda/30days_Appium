@@ -11,7 +11,7 @@ public class ControlEmulator {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("platformName", "Android");
         capabilities.setCapability("deviceName", "emulator-5554");
-        capabilities.setCapability("app", "C:\\Users\\sp199\\IdeaProjects\\30days_Appium\\sunflower\\app\\build\\outputs\\apk\\debug\\app-debug.apk");
+        capabilities.setCapability("app", "YourPath\\app-debug.apk");
         capabilities.setCapability("automationName", "UiAutomator2");
         capabilities.setCapability("uiautomator2ServerInstallTimeout", 60000);
         capabilities.setCapability("adbExecTimeout", 120000);

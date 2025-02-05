@@ -10,7 +10,7 @@ public class LinkedInTest { // ✅ Renamed class to avoid conflict
     public static void main(String[] args) throws Exception {
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability("platformName", "Android");
-        caps.setCapability("deviceName", "RZCW902G7RE"); // Use `adb devices` to find it
+        caps.setCapability("deviceName", "XXXXX"); // Use `adb devices` to find it
         caps.setCapability("appPackage", "com.linkedin.android");
         caps.setCapability("appActivity", "com.linkedin.android.authenticator.LaunchActivityDefault");
         caps.setCapability("automationName", "UiAutomator2");
